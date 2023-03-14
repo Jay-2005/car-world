@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ragistration form</title>
+	<link rel="icon" href="C:\Users\Jaydeep\Desktop\carsdf.png">
+    <style>
+        body {
+            font-size: 16px;
+            background: #8abaf8d2;
+            font-family: "Segoe UI", "Helvetion Neue", Arial, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        form {
+            width: 300px;
+            background: #868282;
+            padding: 15px 40px 40px;
+            border: 1px solid #ccc;
+            margin: 50px auto 0;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        label i {
+            color: #999;
+            font-size: 80%;
+        }
+
+        input,
+        select {
+            border: 1px solid #fdfff4;
+            padding: 10px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 2px;
+        }
+
+        .row {
+            padding-bottom: 10px;
+        }
+
+        .form-inline {
+            border: 1px solid #ccc;
+            padding: 8px 10px 4px;
+            border-radius: 2px;
+        }
+
+        .form-inline label,
+        .form-inline input {
+            display: inline-block;
+            width: auto;
+            padding-right: 15px;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 90%;
+        }
+
+        input[type="submit"] {
+            font-size: 110%;
+            font-weight: 100;
+            background: #006dcc;
+            border-color: #0163c1;
+            box-shadow: 0 3px 0 #0165b6;
+            color: #fff;
+            margin-top: 10px;
+            cursor: pointer;
+			text-decoration: none;
+        }
+
+        input[type="submit"]:hover {
+            background: #0165b6;
+        }
+    </style>
+    <script>
+        function printError(elemId, hintMsg) {
+            document.getElementById(elemId).innerHTML = hintMsg;
+        }
+        function validateForm() {
+            var name = document.contactForm.name.value;
+            var mobile = document.contactForm.mobile.value;
+            var Email = document.contactForm.Email.value;
+            var country = document.contactForm.country.value;
+
+
+            //full name
+            var nameErr = document.contactForm.name.value;
+            var nameErr = true;
+
+            if (name == "") {
+                printError("nameErr", "Please enter  your name");
+            }
+            else {
+                var regex = /^[a-zA-Z\s]+$/;
+                if (regex.test(name) === false) {
+                    printError("nameErr", "Please enter a valid name");
+                }
+                else {
+                    printError("nameErr", "");
+                    nameErr = false;
+                }
+            }
+            // if(nameErr == true){
+            //     return false;
+            // }
+
+
+            //mobile number
+            var mobileErr = document.contactForm.mobile.value;
+            var mobileErr = true;
+
+            if (mobile == "") {
+                printError("mobileErr", "Please enter  your full Number");
+            }
+            else {
+                var regex = /^[1-9]\d{9}$/;
+                if (regex.test(mobile) === false) {
+                    printError("mobileErr", "Please enter a valid mobile no.");
+                }
+                else {
+                    printError("mobileErr", "");
+                    mobileErr = false;
+                }
+            }
+            //Email
+            var EmailErr = document.contactForm.Email.value;
+            var EmailErr = true;
+
+            if (Email == "") {
+                printError("EmailErr", "Please enter  your mail address");
+            }
+            else {
+                var regex = /^\w+([\.-1]?\w+)*@\w+([\.-1]?\w+)*(\.\w{2,3})+$/;
+                if (regex.test(Email) === false) {
+                    printError("EmailErr", "Please enter a valid mail address");
+                }
+                else {
+                    printError("EmailErr", "");
+                    EmailErr = false;
+                }
+            }
+            //country 
+
+            if (country == "select") {
+                printError("countryErr", "Please select your country");
+            }
+            else {
+                printError("countryErr", "");
+                countryErr = false;
+            }
+           
+            if (nameErr || mobileErr || EmailErr || countryErr  == true) {
+                return false;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <form name="contactForm" onsubmit="return validateForm()" action="E:\DESKTOP\jay.html" method="post">
+        <h2>Login Form</h2>
+        <div class="row">
+            <label>Full Name :</label>
+            <input type="text" name="name" placeholder="Enter your Name">
+            <div class="error" id="nameErr"></div>
+        </div>
+        <div class="row">
+            <label>contact No :</label>
+            <input type="number" name="mobile" placeholder="Enter your Number">
+            <div class="error" id="mobileErr"></div>
+        </div>
+        <div class="row">
+            <label>Email :</label>
+            <input type="email" name="Email" placeholder="Enter your mail">
+            <div class="error" id="EmailErr"></div>
+
+            <div class="row">
+                <label>country :</label>
+                <select name="country">
+                    <option>select</option>
+                    <option>canada</option>
+                    <option>australia</option>
+                    <option>india</option>
+                    <option>america</option>
+                </select>
+                <div class="error" id="countryErr"></div>
+            </div>
+
+            <div class="row">
+                <a href="E:\DESKTOP\jay.html"><input type="submit" name="submit"></a>
+            </div>
+    </form>
+</body>
+
+</html>
